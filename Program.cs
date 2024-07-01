@@ -12,7 +12,13 @@ var configuration = new ConfigurationBuilder()
 builder.Services.AddControllersWithViews();
 //builder.Services.AddDbContext<InscripcionesContext>(options => options.UseSqlServer(configuration.GetConnectionString("sqlserver")));
 string cadenaConexion = configuration.GetConnectionString("mysqlremoto");
-builder.Services.AddDbContext<InscripcionesContext>(options => options.UseMySql(cadenaConexion,ServerVersion.AutoDetect(cadenaConexion), options => options.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: System.TimeSpan.FromSeconds(30),errorNumbersToAdd: null)));
+builder.Services.AddDbContext<InscripcionesContext>(options => options.UseMySql(cadenaConexion,
+            ServerVersion.AutoDetect(cadenaConexion),
+                                options => options.EnableRetryOnFailure(
+                                        maxRetryCount: 5,
+                                        maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                                       errorNumbersToAdd: null)));
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -40,7 +46,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-app.UseCors("AllowAll");
 
 app.MapControllerRoute(
     name: "default",

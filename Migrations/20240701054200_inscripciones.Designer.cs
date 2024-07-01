@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inscripciones.Migrations
 {
     [DbContext(typeof(InscripcionesContext))]
-    [Migration("20240627160630_inscripciones")]
+    [Migration("20240701054200_inscripciones")]
     partial class inscripciones
     {
         /// <inheritdoc />
