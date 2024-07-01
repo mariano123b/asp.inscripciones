@@ -1,26 +1,30 @@
-﻿@model Inscripciones.Models.AnioCarrera
+﻿@model Inscripciones.Models.Materia
 
 @{
     ViewData["Title"] = "Create";
+    int idanio = ViewBag.IdAnio;
 }
 
 <h1>Create</h1>
 
-<h4>AnioCarrera</h4>
+<h4>Materia</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateConAnio">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CarreraId" class="control-label"></label>
-                <select asp-for="CarreraId" class ="form-control" asp-items="ViewBag.Carreras"></select>
+                <label  class="control-label"></label>
+                <select class="form-control" asp-items="ViewBag.AniosCarreras" disabled></select>
             </div>
+            <input type="hidden" asp-for="AnioCarreraId" value="@idanio" />
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -29,7 +33,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="IndexPorAnio"  asp-route-idanio="@idanio">Back to List</a>
 </div>
 
 @section Scripts {

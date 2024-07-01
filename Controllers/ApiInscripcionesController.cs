@@ -11,47 +11,47 @@ namespace Inscripciones.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApiMateriasController : ControllerBase
+    public class ApiInscripcionesController : ControllerBase
     {
         private readonly InscripcionesContext _context;
 
-        public ApiMateriasController(InscripcionesContext context)
+        public ApiInscripcionesController(InscripcionesContext context)
         {
             _context = context;
         }
 
-        // GET: api/ApiMaterias
+        // GET: api/ApiInscripciones
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Materia>>> Getmaterias()
+        public async Task<ActionResult<IEnumerable<Inscripcion>>> Getinscripciones()
         {
-            return await _context.materias.ToListAsync();
+            return await _context.inscripciones.ToListAsync();
         }
 
-        // GET: api/ApiMaterias/5
+        // GET: api/ApiInscripciones/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Materia>> GetMateria(int id)
+        public async Task<ActionResult<Inscripcion>> GetInscripcion(int id)
         {
-            var materia = await _context.materias.FindAsync(id);
+            var inscripcion = await _context.inscripciones.FindAsync(id);
 
-            if (materia == null)
+            if (inscripcion == null)
             {
                 return NotFound();
             }
 
-            return materia;
+            return inscripcion;
         }
 
-        // PUT: api/ApiMaterias/5
+        // PUT: api/ApiInscripciones/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMateria(int id, Materia materia)
+        public async Task<IActionResult> PutInscripcion(int id, Inscripcion inscripcion)
         {
-            if (id != materia.Id)
+            if (id != inscripcion.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(materia).State = EntityState.Modified;
+            _context.Entry(inscripcion).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace Inscripciones.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MateriaExists(id))
+                if (!InscripcionExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace Inscripciones.Controllers
             return NoContent();
         }
 
-        // POST: api/ApiMaterias
+        // POST: api/ApiInscripciones
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Materia>> PostMateria(Materia materia)
+        public async Task<ActionResult<Inscripcion>> PostInscripcion(Inscripcion inscripcion)
         {
-            _context.materias.Add(materia);
+            _context.inscripciones.Add(inscripcion);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMateria", new { id = materia.Id }, materia);
+            return CreatedAtAction("GetInscripcion", new { id = inscripcion.Id }, inscripcion);
         }
 
-        // DELETE: api/ApiMaterias/5
+        // DELETE: api/ApiInscripciones/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMateria(int id)
+        public async Task<IActionResult> DeleteInscripcion(int id)
         {
-            var materia = await _context.materias.FindAsync(id);
-            if (materia == null)
+            var inscripcion = await _context.inscripciones.FindAsync(id);
+            if (inscripcion == null)
             {
                 return NotFound();
             }
 
-            _context.materias.Remove(materia);
+            _context.inscripciones.Remove(inscripcion);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MateriaExists(int id)
+        private bool InscripcionExists(int id)
         {
-            return _context.materias.Any(e => e.Id == id);
+            return _context.inscripciones.Any(e => e.Id == id);
         }
     }
 }

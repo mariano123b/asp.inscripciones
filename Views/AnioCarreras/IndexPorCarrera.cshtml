@@ -2,13 +2,21 @@
 
 @{
     ViewData["Title"] = "Index";
+    int idcarrera = ViewBag.IdCarrera;
+
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CreateConCarrera" asp-route-idcarrera="@idcarrera">Create New</a>
 </p>
+<form asp-controller="AnioCarreras" asp-action="IndexPorCarrera" method="post">
+    <div class="form-group">
+        <label asp-for="@idcarrera" class="control-label"></label>
+        <select asp-for="@idcarrera" disabled class="form-control" asp-items="ViewBag.Carreras" onchange="this.form.submit()"></select>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -31,6 +39,7 @@
                 @Html.DisplayFor(modelItem => item.Carrera.Nombre)
             </td>
             <td>
+           <a asp-controller="Materias" asp-action="IndexPorAnio" asp-route-idanio="@item.Id">Materias</a> |
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
@@ -39,3 +48,4 @@
 }
     </tbody>
 </table>
+<a asp-controller="Carreras" asp-action="Index">Volver</a>

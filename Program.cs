@@ -40,6 +40,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseCors("AllowAll");
 
 app.MapControllerRoute(
     name: "default",

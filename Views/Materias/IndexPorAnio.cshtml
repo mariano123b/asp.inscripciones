@@ -1,14 +1,23 @@
 ﻿@model IEnumerable<Inscripciones.Models.Materia>
 
+
 @{
     ViewData["Title"] = "Index";
+    int idanio = ViewBag.IdAnio;
+    int idcarrera = ViewBag.IdCarrera;
 }
 
-<h1>Index</h1>
+<h1>Mostrando Materias del año seleccionado</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CreateConAnio" asp-route-idanio="@idanio">Create New</a>
 </p>
+<form asp-controller="Materias" asp-action="IndexPorAnio" method="get">
+    <div class="form-group">
+        <label asp-for="@idanio" class="control-label"></label>
+        <select asp-for="@idanio" disabled class="form-control" asp-items="ViewBag.AniosCarreras" onchange="this.form.submit()"></select>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -39,3 +48,4 @@
 }
     </tbody>
 </table>
+<a asp-controller="AnioCarreras" asp-action="IndexPorCarrera" asp-route-idcarrera="@idcarrera">Volver</a>

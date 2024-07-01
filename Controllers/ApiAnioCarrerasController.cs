@@ -11,27 +11,27 @@ namespace Inscripciones.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class apiAnioCarrerasController : ControllerBase
+    public class ApiAnioCarrerasController : ControllerBase
     {
         private readonly InscripcionesContext _context;
 
-        public apiAnioCarrerasController(InscripcionesContext context)
+        public ApiAnioCarrerasController(InscripcionesContext context)
         {
             _context = context;
         }
 
-        // GET: api/apiAnioCarreras
+        // GET: api/ApiAnioCarreras
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AnioCarrera>>> GetAnioCarreras()
+        public async Task<ActionResult<IEnumerable<AnioCarrera>>> Getanioscarreras()
         {
-            return await _context.AnioCarreras.ToListAsync();
+            return await _context.anioscarreras.ToListAsync();
         }
 
-        // GET: api/apiAnioCarreras/5
+        // GET: api/ApiAnioCarreras/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AnioCarrera>> GetAnioCarrera(int id)
         {
-            var anioCarrera = await _context.AnioCarreras.FindAsync(id);
+            var anioCarrera = await _context.anioscarreras.FindAsync(id);
 
             if (anioCarrera == null)
             {
@@ -41,7 +41,7 @@ namespace Inscripciones.Controllers
             return anioCarrera;
         }
 
-        // PUT: api/apiAnioCarreras/5
+        // PUT: api/ApiAnioCarreras/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAnioCarrera(int id, AnioCarrera anioCarrera)
@@ -72,28 +72,28 @@ namespace Inscripciones.Controllers
             return NoContent();
         }
 
-        // POST: api/apiAnioCarreras
+        // POST: api/ApiAnioCarreras
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<AnioCarrera>> PostAnioCarrera(AnioCarrera anioCarrera)
         {
-            _context.AnioCarreras.Add(anioCarrera);
+            _context.anioscarreras.Add(anioCarrera);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAnioCarrera", new { id = anioCarrera.Id }, anioCarrera);
         }
 
-        // DELETE: api/apiAnioCarreras/5
+        // DELETE: api/ApiAnioCarreras/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAnioCarrera(int id)
         {
-            var anioCarrera = await _context.AnioCarreras.FindAsync(id);
+            var anioCarrera = await _context.anioscarreras.FindAsync(id);
             if (anioCarrera == null)
             {
                 return NotFound();
             }
 
-            _context.AnioCarreras.Remove(anioCarrera);
+            _context.anioscarreras.Remove(anioCarrera);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +101,7 @@ namespace Inscripciones.Controllers
 
         private bool AnioCarreraExists(int id)
         {
-            return _context.AnioCarreras.Any(e => e.Id == id);
+            return _context.anioscarreras.Any(e => e.Id == id);
         }
     }
 }

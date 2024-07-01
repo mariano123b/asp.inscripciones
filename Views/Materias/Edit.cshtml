@@ -14,14 +14,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="nombre" class="control-label"></label>
-                <input asp-for="nombre" class="form-control" />
-                <span asp-validation-for="nombre" class="text-danger"></span>
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="aniocarreraId" class="control-label"></label>
-                <select asp-for="aniocarreraId" class="form-control" asp-items="ViewBag.aniocarreraId"></select>
-                <span asp-validation-for="aniocarreraId" class="text-danger"></span>
+                <label asp-for="AnioCarreraId" class="control-label"></label>
+                <select asp-for="AnioCarreraId" class="form-control" asp-items="ViewBag.AniosCarreras"></select>
+                <span asp-validation-for="AnioCarreraId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
